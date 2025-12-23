@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ORION — Web Dev • Video Editing • Content Creation</title>
+  <meta name="description" content="ORION Agency — professional website development, video editing and content creation services." />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    /* -------------------------
+       Variables & Reset  
+       ------------------------- */
+    :root{
+      --bg:#07102a; /* deep navy */
+      --accent:#0ea5a4; /* teal/cyan */
+      --muted:#9aa7bf;
+      --card:#0f2340;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+      --ff: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff);
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(14,165,164,0.06), transparent),
+                  linear-gradient(180deg,#041026 0%, var(--bg) 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px 16px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      margin:20px auto;
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* -------------------------
+       Header / Nav
+       ------------------------- */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2dd4bf);display:flex;align-items:center;justify-content:center;font-weight:700;color:#032;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .brand h1{font-size:18px;margin:0}
+    nav{display:flex;gap:18px;align-items:center}
+    .btn{background:var(--accent);color:#012; padding:10px 16px;border-radius:10px;font-weight:700;display:inline-block}
+    .ghost{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06)}
+
+    /* -------------------------
+       Hero
+       ------------------------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:22px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:28px;border-radius:18px}
+    .kicker{display:inline-block;background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px}
+    .headline{font-size:34px;margin:12px 0 8px}
+    .sub{color:var(--muted);margin-bottom:18px}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .feature{background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:12px;font-size:14px}
+
+    .hero-visual{min-height:320px;border-radius:16px;background-image:linear-gradient(135deg, rgba(14,165,164,0.06), transparent);display:flex;flex-direction:column;gap:12px;padding:18px;align-items:flex-start;justify-content:center}
+    .hero-visual img{width:100%;border-radius:12px;object-fit:cover;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .stats{display:flex;gap:12px;justify-content:space-between;margin-top:8px}
+    .stat{background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:10px;text-align:center}
+
+    /* -------------------------
+       Services
+       ------------------------- */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .card{background:var(--card);padding:18px;border-radius:14px}
+    .card h3{margin:6px 0}
+    .pill{display:inline-block;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:13px}
+
+    /* -------------------------
+       Portfolio
+       ------------------------- */
+    .portfolio{margin-top:24px}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .shot{height:140px;border-radius:10px;background-size:cover;background-position:center;box-shadow:0 8px 22px rgba(2,6,23,0.6)}
+
+    /* -------------------------
+       Testimonials + CTA
+       ------------------------- */
+    .testimonials{display:flex;gap:12px;margin-top:22px}
+    .testimonial{padding:16px;border-radius:12px;background:rgba(255,255,255,0.02);flex:1}
+    .cta{display:flex;align-items:center;justify-content:space-between;padding:18px;border-radius:12px;margin-top:22px;background:linear-gradient(90deg, rgba(14,165,164,0.06), transparent)}
+
+    /* -------------------------
+       Contact
+       ------------------------- */
+    form{display:grid;gap:12px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:inherit;font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .row > *{flex:1}
+
+    /* -------------------------
+       Footer
+       ------------------------- */
+    footer{margin-top:30px;padding:18px;border-radius:12px;text-align:center;color:var(--muted)}
+
+    /* -------------------------
+       Responsiveness
+       ------------------------- */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .portfolio-grid,.grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      header{flex-direction:column;gap:12px}
+      .grid,.portfolio-grid{grid-template-columns:1fr}
+      .logo{width:48px;height:48px}
+      .headline{font-size:26px}
+    }
+
+    /* -------------------------
+       Micro interactions
+       ------------------------- */
+    .btn, .ghost{transition:transform .18s ease, box-shadow .18s ease}
+    .btn:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,165,164,0.08)}
+    .card:hover{transform:translateY(-6px);transition:transform .18s ease}
+    .focus{outline:2px solid rgba(14,165,164,0.12);box-shadow:0 6px 24px rgba(2,6,23,0.4)}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">OR</div>
+        <div>
+          <h1>ORION Agency</h1>
+          <div style="font-size:12px;color:var(--muted)">Websites • Video • Content</div>
+        </div>
+      </div>
+
+      <nav>
+        <a class="ghost" href="#services">Services</a>
+        <a class="ghost" href="#portfolio">Portfolio</a>
+        <a class="ghost" href="#contact">Contact</a>
+        <a class="btn" href="#contact">Get a Quote</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <span class="kicker">Full-stack creative studio</span>
+          <h2 class="headline">We build websites, edit videos and create content that makes brands unforgettable.</h2>
+          <p class="sub">Design-led web development, cinematic video editing and data-informed content creation — all under one roof. We make your message look and perform great.</p>
+
+          <div class="features">
+            <div class="feature">Responsive Web Development</div>
+            <div class="feature">Cinematic Video Editing</div>
+            <div class="feature">Social Content & Strategy</div>
+            <div class="feature">Branding & Motion</div>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+            <a class="btn" href="#contact">Start a Project</a>
+            <a class="ghost" href="#portfolio">See Portfolio</a>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="font-weight:700;font-size:20px">120+</div>
+              <div style="color:var(--muted);font-size:13px">Projects delivered</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="font-weight:700;font-size:20px">95%</div>
+              <div style="color:var(--muted);font-size:13px">Client satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop&crop=faces" alt="Studio workspace" />
+
+          <div class="stats">
+            <div class="stat">
+              <div style="font-weight:700">Websites</div>
+              <div style="color:var(--muted);font-size:13px">Fast, secure & SEO-ready</div>
+            </div>
+            <div class="stat">
+              <div style="font-weight:700">Video</div>
+              <div style="color:var(--muted);font-size:13px">Cinematic edits & motion</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="services" class="grid" aria-label="services">
+        <article class="card">
+          <div class="pill">Web Development</div>
+          <h3>Custom Websites & Web Apps</h3>
+          <p style="color:var(--muted)">Responsive design, performance optimization, e-commerce and CMS integration. We use modern tools and follow best practices to deliver sites that convert.</p>
+        </article>
+
+        <article class="card">
+          <div class="pill">Video Editing</div>
+          <h3>Cinematic Video & Ads</h3>
+          <p style="color:var(--muted)">Story-driven edits, sound design, color grading and motion graphics for brand films, promos and social ads.</p>
+        </article>
+
+        <article class="card">
+          <div class="pill">Content Creation</div>
+          <h3>Social Content & Strategy</h3>
+          <p style="color:var(--muted)">Short-form videos, thumbnails, captions and content calendars to grow engagement and reach.</p>
+        </article>
+      </section>
+
+      <section id="portfolio" class="portfolio">
+        <h2 style="margin:10px 0">Selected work</h2>
+        <div class="portfolio-grid">
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=800&auto=format&fit=crop')"></div>
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop')"></div>
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=800&auto=format&fit=crop')"></div>
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&auto=format&fit=crop')"></div>
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop')"></div>
+          <div class="shot" style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop')"></div>
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <div class="testimonial">
+          <strong>"ORION transformed our website — conversions doubled within weeks."</strong>
+          <div style="color:var(--muted);font-size:13px;margin-top:8px">— Robel H., CEO</div>
+        </div>
+        <div class="testimonial">
+          <strong>"The promo video was cinematic and perfectly on-brand."</strong>
+          <div style="color:var(--muted);font-size:13px;margin-top:8px">— Liyuwork M., Marketing Lead</div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div>
+          <h3 style="margin:0">Ready to launch something great?</h3>
+          <div style="color:var(--muted);font-size:13px">Tell us about your project and we'll send a free proposal.</div>
+        </div>
+        <div>
+          <a class="btn" href="#contact">Get a free proposal</a>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:18px" aria-label="contact">
+        <h2>Contact & Quote</h2>
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:12px">
+          <div class="card">
+            <form id="contactForm">
+              <div class="row">
+                <input id="name" type="text" placeholder="Your name" required />
+                <input id="email" type="email" placeholder="Email" required />
+              </div>
+              <input id="company" type="text" placeholder="Company (optional)" />
+              <select id="service">
+                <option value="web">Website development</option>
+                <option value="video">Video editing</option>
+                <option value="content">Content creation</option>
+                <option value="other">Other / combo</option>
+              </select>
+              <textarea id="message" placeholder="Tell us about your project" required></textarea>
+              <div style="display:flex;gap:10px;align-items:center">
+                <button type="submit" class="btn">Send message</button>
+                <div id="formStatus" style="color:var(--muted);font-size:13px"></div>
+              </div>
+            </form>
+          </div>
+
+          <aside class="card">
+            <h3>Quick info</h3>
+            <p style="color:var(--muted)">Email: hello@orion.agency<br/>Phone: +251 9XX XXX XXX (replace)<br/>Location: Addis Ababa, Ethiopia</p>
+            <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0;border-radius:2px" />
+            <h4>How we work</h4>
+            <ol style="color:var(--muted);padding-left:18px">
+              <li>Discovery call</li>
+              <li>Proposal & timeline</li>
+              <li>Design & build / edit</li>
+              <li>Delivery & support</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="max-width:800px;margin:0 auto">© <span id="year"></span> ORION Agency — Built with care. Follow us on social media.</div>
+    </footer>
+  </div>
+
+  <script>
+    // small interactive scripts
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Form handling (simulated send)
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      if(!name || !email || !msg){
+        status.textContent = 'Please complete the required fields.';
+        return;
+      }
+      status.textContent = 'Sending...';
+      // Simulate async send
+      setTimeout(()=>{
+        status.textContent = 'Thank you — we received your request. We will email a proposal within 48 hours.';
+        form.reset();
+      },900);
+    });
+
+    // Small accessibility helpers
+    const inputs = document.querySelectorAll('input,textarea,select,button');
+    inputs.forEach(i=>{
+      i.addEventListener('focus', ()=> i.classList.add('focus'));
+      i.addEventListener('blur', ()=> i.classList.remove('focus'));
+    });
+  </script>
+</body>
+</html>
